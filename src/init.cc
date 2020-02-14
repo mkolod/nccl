@@ -183,7 +183,7 @@ ncclResult_t ncclGetUniqueId(ncclUniqueId* out) {
 }
 
 // Prevent compiler from optimizing out these operations
-void __attribute__((optimize("O0"))) commPoison(ncclComm_t comm) {
+[[clang::optnone]] void commPoison(ncclComm_t comm) {
   comm->rank = comm->cudaDev = comm->nvmlDev = comm->nRanks = -1;
 }
 
